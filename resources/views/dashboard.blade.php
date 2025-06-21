@@ -8,13 +8,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <title>Pendaftaran Online</title>
+    <title>Dashboard</title>
   </head>
   <body>
     <div class="container">
-        <div class="jumbotron text-center">
-            <h1>Login Admin</h1>
-        </div>
         @if(session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
@@ -25,22 +22,8 @@
                 {{ session('success') }}
             </div>
         @endif
-        <form action="{{ url('/admin/login') }}" method="POST">
-            @csrf
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <label>Email</label>
-                    <input class="form-control" type="email" name="email" required value="admin@gmail.com" placeholder="Email">
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <label>Password</label>
-                    <input class="form-control" type="text" name="pass" required value="12345" placeholder="Password">
-                </div>
-                <div class="col-lg-12 col-md-12 col-12 mt-2">
-                    <button type="submit" class="btn btn-block btn-primary">Login Admin</button>
-                </div>
-            </div>
-        </form>
+
+        
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
