@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'Pendaftar']);
 Route::post('/pendaftar/simpan', [HomeController::class, 'Pendaftar_Simpan']);
+Route::get('/admin', [AuthController::class, 'Admin']);
 
