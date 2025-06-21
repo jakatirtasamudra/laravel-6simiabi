@@ -33,6 +33,12 @@ class AuthController extends Controller
             return redirect(url('/dashboard'))->with('success', 'berhasil login'); 
         }
     }
+
+    public function Logout()
+    {
+        Session::forget('auth_login');
+        return redirect(url('/'))->with('success', 'berhasil logout'); 
+    }
 }
 
 

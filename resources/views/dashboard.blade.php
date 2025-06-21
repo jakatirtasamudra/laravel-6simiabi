@@ -22,8 +22,60 @@
                 {{ session('success') }}
             </div>
         @endif
-
         
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ url('/dashboard') }}">Dashboard</a>
+            <a class="btn btn-danger" href="{{ url('/logout') }}" onclick="return confirm('apakah kamu mau logout?')">Logout</a>
+        </nav>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NIRM</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Tgl Daftar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($datas as $row)
+                <tr>
+                    <td>
+                        @if ($row->status == 'validasi')
+                            <a href="{{ url('/dashboard/hapus', $row->id) }}" class="btn btn-danger" onclick="return confirm('apakah yakin untuk di hapus {{ $row->nama }}?')">
+                                Hapus
+                            </a>
+                        @endif
+                        @if ($row->status == 'daftar')
+                            <a href="{{ url('/dashboard/tolak', $row->id) }}" class="btn btn-danger" onclick="return confirm('apakah yakin untuk di tolak {{ $row->nama }}?')">
+                                Tolak
+                            </a>
+                            <a href="{{ url('/dashboard/validasi', $row->id) }}" class="btn btn-success" onclick="return confirm('apakah yakin untuk di validasi {{ $row->nama }}?')">
+                                Validasi
+                            </a>
+                        @endif
+                    </td>
+                    <td>{{ $row->nirm }}</td>
+                    <td>{{ $row->email }}</td>
+                    <td>{{ $row->nama }}</td>
+                    <td>
+                        @if ($row->status == 'daftar')
+                            <span class="badge bg-warning">daftar</span>
+                        @elseif ($row->status == 'tolak')
+                            <span class="badge bg-danger">tolak</span>
+                        @elseif ($row->status == 'validasi')
+                            <span class="badge bg-success">validasi</span>
+                        @elseif ($row->status == 'selesai')
+                            <span class="badge bg-primary">selesai</span>
+                        @endif
+                    </td>
+                    <td>{{ $row->tgldaftar }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
